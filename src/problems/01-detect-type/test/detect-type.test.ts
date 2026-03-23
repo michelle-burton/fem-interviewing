@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'bun:test'
 import { detectType as referenceSolution } from '../solution/detect-type'
-import { detectType as studentSolution } from '../detect-type.vanila'
-
+//import { detectType as studentSolution } from '../detect-type.vanila'
+import { detectType as studentSolution } from '../my'
 const implementations = [
   { name: 'Reference', fn: referenceSolution },
   { name: 'Student', fn: studentSolution },
