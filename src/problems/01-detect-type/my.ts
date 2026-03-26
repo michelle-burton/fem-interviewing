@@ -26,3 +26,9 @@ type DetectType =
 //   }
 //   return (Object.getPrototypeOf(value)?.constructor?.name ?? 'object').toLowerCase()
 // }
+
+export function detectType(value: any): DetectType {
+  if (value == null) {
+    return `${value}`
+  }
+}
