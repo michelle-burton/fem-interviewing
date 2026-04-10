@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Storage</title>
+  </head>
+  <body>
+    <button id="save">Save Name</button>
+    <button id="load">Load Name</button>
+    <button id="remove">Remove Name</button>
+    <p id="result"></p>
+
+    <script>
+      const result = document.getElementById('result')
+
+      document.getElementById('save').addEventListener('click', () => {
+        localStorage.setItem('username', 'Michelle')
+        result.textContent = 'Name saved.'
+      })
+
+      document.getElementById('load').addEventListener('click', () => {
+        const name = localStorage.getItem('username')
+        result.textContent = name ? `Stored name: ${name}` : 'No name found.'
+      })
+
+      document.getElementById('remove').addEventListener('click', () => {
+        localStorage.removeItem('username')
+        result.textContent = 'Name removed.'
+      })
+    </script>
+  </body>
+</html>
