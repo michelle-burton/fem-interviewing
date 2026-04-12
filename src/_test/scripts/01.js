@@ -1,16 +1,14 @@
-console.log('JS 01 loaded')
+console.log('JS 02 loaded')
 
-function getNumber() {
-  return 5
+function runConditionally(fn, value) {
+  if (value > 10) {
+    return value + 5
+  }
+  return 'too small'
 }
 
-const x = getNumber()
-const y = getNumber
-
-function run(fn) {
-  console.log('before')
-  const result = fn()
-  console.log('after')
+function square(x) {
+  return x * x
 }
 
-//run(x)
+console.log(runConditionally(square, 11))

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Effects</title>
+    <style>
+      button {
+        background: blue;
+        transition: background 0.9s;
+      }
+      button:hover {
+        background: red;
+      }
+
+      .box {
+        width: 150px;
+        height: 100px;
+        margin: 50px;
+        background: green;
+        transform: rotate(45deg);
+      }
+
+      @keyframes slide {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(100px);
+        }
+      }
+
+      .box2 {
+        width: 150px;
+        height: 100px;
+        margin: 50px;
+        background: green;
+       // animation: slide 1s infinite alternate;
+      }
+    </style>
+  </head>
+  <body>
+    <button>Blue to Red</button>
+    <div class="box">turn me</div>
+    <div class="box2">turn me</div>
+  </body>
+</html>

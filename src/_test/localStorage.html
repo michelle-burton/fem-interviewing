@@ -13,21 +13,22 @@
 
     <script>
       const result = document.getElementById('result')
+      if (typeof Storage !== 'undefined') {
+        document.getElementById('save').addEventListener('click', () => {
+          localStorage.setItem('username', 'Michelle')
+          result.textContent = 'Name saved.'
+        })
 
-      document.getElementById('save').addEventListener('click', () => {
-        localStorage.setItem('username', 'Michelle')
-        result.textContent = 'Name saved.'
-      })
+        document.getElementById('load').addEventListener('click', () => {
+          const name = localStorage.getItem('username')
+          result.textContent = name ? `Stored name: ${name}` : 'No name found.'
+        })
 
-      document.getElementById('load').addEventListener('click', () => {
-        const name = localStorage.getItem('username')
-        result.textContent = name ? `Stored name: ${name}` : 'No name found.'
-      })
-
-      document.getElementById('remove').addEventListener('click', () => {
-        localStorage.removeItem('username')
-        result.textContent = 'Name removed.'
-      })
+        document.getElementById('remove').addEventListener('click', () => {
+          localStorage.removeItem('username')
+          result.textContent = 'Name removed.'
+        })
+      }
     </script>
   </body>
 </html>

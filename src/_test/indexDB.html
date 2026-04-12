@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>IndexedDB Demo</title>
+  </head>
+  <body>
+    <h2>IndexedDB Example</h2>
+
+    <input type="text" id="itemInput" placeholder="Enter item" />
+    <button onclick="addItem()">Add Item</button>
+
+    <ul id="list"></ul>
+
+    <script>
+      let db
+
+      // Open DB
+      const request = indexedDB.open('MyDB', 1)
+
+      request.onupgradeneeded = function (e) {
+        db = e.target.result
+        db.createObjectStore('items', { keyPath: 'id', autoIncrement: true })
+      }
+
+      request.onsuccess = function (e) {
+        db = e.target.result
+        displayItems()
+      }
+
+      // Add item
+      function addItem() {
+        const input = document.getElementById('itemInput')
+        const value = input.value
+
+        if (!value) return
+
+        const tx = db.transaction('items', 'readwrite')
+        const store = tx.objectStore('items')
+
+        store.add({ text: value })
+
+        tx.oncomplete = () => {
+          input.value = ''
+          displayItems()
+        }
+      }
+
+      // Display items
+      function displayItems() {
+        const list = document.getElementById('list')
+        list.innerHTML = ''
+
+        const tx = db.transaction('items', 'readonly')
+        const store = tx.objectStore('items')
+
+        store.openCursor().onsuccess = function (e) {
+          const cursor = e.target.result
+
+          if (cursor) {
+            const li = document.createElement('li')
+
+            li.textContent = cursor.value.text + ' '
+
+            const btn = document.createElement('button')
+            btn.textContent = 'Delete'
+            btn.onclick = () => deleteItem(cursor.value.id)
+
+            li.appendChild(btn)
+            list.appendChild(li)
+
+            cursor.continue()
+          }
+        }
+      }
+
+      // Delete item
+      function deleteItem(id) {
+        const tx = db.transaction('items', 'readwrite')
+        const store = tx.objectStore('items')
+
+        store.delete(id)
+
+        tx.oncomplete = displayItems
+      }
+    </script>
+  </body>
+</html>

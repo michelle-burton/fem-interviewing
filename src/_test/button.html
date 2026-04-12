@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <div id="bt">click me</div>
+
+      <div id="output">0</div>
+    </main>
+    <script>
+      const bt = document.querySelector('#bt')
+      const box = document.getElementById('output')
+
+      const count = (e) => {
+        result = Number(box.textContent)
+        result += 1
+        console.log(result)
+        box.textContent = result
+      }
+
+      bt.addEventListener('click', count)
+    </script>
+  </body>
+</html>
