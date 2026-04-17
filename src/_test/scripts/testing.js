@@ -3,39 +3,41 @@ console.log('testing JS loaded!')
 const myArr = [1, 2, 2, 3, 1]
 // one
 function doubleNumbers(arr) {
-  return arr.map((num) => num * 2)
+  return arr.map((item) => item * 2)
 }
-doubleNumbers(myArr)
 
-// two
+// 2 -keep even (filter), then double (map)
 function processNumbers(arr) {
-  return arr.filter((item) => item > 3).map((item) => item * 2)
+  return arr.filter((item) => item % 2 === 0).map((item) => item * 2)
 }
 
-processNumbers(myArr)
-
-// Count how many numbers are greater than 3
+// 3  count numbers > 3
 function countGreaterThanThree(arr) {
-  const result = arr.reduce((accum, item, i, arr) => {
-    if (item > 3) {
-      accum += 1
-    }
-    accum
-  }, 0)
-  return SpeechRecognitionResult
-}
-
-// tighten up
-function countGreaterThanThree(arr) {
-    return arr.reduce(
-        (accum, item) => {
-      item > 3 ? accum += 1 : accum,
+  const result = arr.reduce((accum, item) => {
+    item > 3 ? accum + 1 : accum
+    return result
   }, 0)
 }
 
-countGreaterThanThree(myArr)
-
-
+// 4 Sum
 function sumNumbers(arr) {
-    return arr.reduce((acc, item) =>  acc + item, 0)
+  return arr.reduce((accum, item) => accum + item, 0)
 }
+
+const arr = [1, 2, 2, 3, 1]
+const unique = [...new Set(arr)]
+
+console.log(unique)
+console.log(typeof unique)
+console.log(Array.isArray(unique))
+console.log(typeof new Set([1, 2, 3]))
+
+
+function run() {
+    return addTen;
+}
+
+function addTen(x) {
+    return x + 10;
+}
+
